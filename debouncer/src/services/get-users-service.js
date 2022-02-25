@@ -11,7 +11,7 @@ export const getUsers = (username) => {
     uri: "https://api.github.com/graphql",
   });
 
-  const token = "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";
+  const token = "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";
 
   const authLink = setContext((_, { headers }) => {
     return {

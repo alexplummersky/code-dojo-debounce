@@ -6,14 +6,17 @@ import { SearchBox } from "./SearchBox";
 import { getUsers } from "../services/get-users-service";
 
 export const UserContainer = () => {
-  const [currentSearchTerm, setCurrentSearchTerm] = useState();
+  const [currentSearchTerm, setCurrentSearchTerm] = useState([]);
   const [retrievedUsers, setRetrievedUsers] = useState([]);
 
-  useEffect(async () => {
-    if (currentSearchTerm) {
-      const response = await getUsers(currentSearchTerm);
-
-      setRetrievedUsers(response.data.search.edges.map((x) => x.node));
+  useEffect(() => {
+    if (currentSearchTerm.length < 1) {
+      setRetrievedUsers([]);
+    } else {
+      (async () => {
+        const response = await getUsers(currentSearchTerm);
+        setRetrievedUsers(response.data.search.edges.map((x) => x.node));
+      })();
     }
   }, [currentSearchTerm]);
 

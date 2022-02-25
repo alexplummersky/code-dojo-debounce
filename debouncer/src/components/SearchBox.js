@@ -4,7 +4,7 @@ export const SearchBox = ({ setSearchQuery }) => {
   const timerRef = useRef();
 
   const debounce = (input) => {
-    const debounceTime = 2000;
+    const debounceTime = 500;
 
     clearTimeout(timerRef.current);
     timerRef.current = setTimeout(() => {
@@ -20,7 +20,8 @@ export const SearchBox = ({ setSearchQuery }) => {
     <input
       type="search"
       onChange={changeHandler}
+      placeholder="Enter a username"
       className={"github-input"}
-    ></input>
+    />
   );
 };
